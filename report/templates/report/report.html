@@ -1,39 +1,94 @@
-{% extends 'base.html' %}
-
-<!-- load static -->
-
+<!DOCTYPE html>
 {% load static %}
-
-<!-- crispy -->
 
 {% load crispy_forms_tags %}
 
-<!-- geoforms -->
+<html>
+<head>
+  <title></title>
+  {{ form.media }}
 
-{{ form.media }}
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<body>
+ 
+<h2>WEB MAPPING</h2>
+
+<hr>
+
+    <div class="container-fluid">
+
+	<div class="col-sm-10" style="float:none;margin:auto;">
+
+    	<div class="card card-body">
+
+    		<form method="POST" action="{% url 'home' %}" >
+      		
+	      		{% csrf_token %}
+
+			    <div class="col-sm-12">
+			      {{ form.place |as_crispy_field }}
+			    </div>
+
+			    <div class="col-sm-12">
+			      	{{ form.injuries |as_crispy_field }}
+			    </div>
+
+			    <div class="row">
+			    	<div class="card card-body">
+			      		{{ form.location |as_crispy_field }}
+			      		
+			      		<button class="btn btn-primary" name="submit" value="Save" type="submit" style="position:relative; left: 30%;width: 200px;">SUBMIT</button>
+			    	</div>
+			    	<div class="card card-body">
+			 			<h2 style="text-align: center; font-weight: 900;"><u>CURRENT STATISTICS</u></h2>
+
+			 			<br>
+
+			 			<hr>
+
+			 			<br>
+
+			 			<h3 style="text-align: center; font-weight: 700;">CASES</h3>
 
 
-{% block title %}
+			 			<br>
 
-{% endblock %}
+			 			<p><h1 style="text-align: center; font-weight: 900;">Value</h1></p>
 
-	{% block content %}
+			 			<hr>
 
-	<h1>Welcome report</h1>
+			 			<br>
 
-	<a href="{% url 'home' %}">HOME</a>
+			 			<h3 style="text-align: center; font-weight: 700;">INJURIES</h3>
 
-	<form method="POST" action="{% url 'home' %}">
+			 			<br>
 
-		{% csrf_token %}
+			 			<p><h1 style="text-align: center; font-weight: 900;">Value</h1></p>
 
-	    <button type="submit" class="btn btn-success" value="submit">SAVE</button>
+			 			<hr>
+			      		
+			    	</div>
+			   	</div>
 
-		
-	</form>
+			   	<br>
+			    
 
-		{% block charts %}
+  			</form>
 
-		{% endblock %}
+  			
+    		
+    	</div>
 
-	{% endblock %}
+    </div>
+
+    <hr>
+
+  
+</body>
+
+</html>
+

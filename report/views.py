@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import *
+from django.contrib import messages
 
 # Create your views here.
 
@@ -15,7 +16,15 @@ def report(request):
 		if form.is_valid():
 			form.save()
 
+			messages.success(request, 'we are working on the incidence reported,THANK YOU.')
+			return redirect('/')
 
-	context = {'form':form}
+		else:
+
+			messages.warning(request, form.errors)
+			return redirect('/report/')
+
+
+	context={'form':form}
 
 	return render(request,'report/report.html',context)

@@ -26,3 +26,6 @@ class Incidence(models.Model):
 
 	def __str__(self):
 		return self.place
+
+		verbose_name_plural="Incidence"
+
