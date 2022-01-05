@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'crispy_forms',
     'leaflet',
     'report',
 ]
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'fire.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'fire_app', 
+        'USER': 'postgres', 
+        'PASSWORD': 'franodex',
+        'HOST': 'localhost', 
+        'PORT': '5432',
     }
 }
 
@@ -121,3 +126,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+
+    Path(BASE_DIR,'static'),
+]
+
+
+# leaflet configuration
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER':(-0.42768,36.9580),
+    'DEFAULT_ZOOM':13,
+    'MIN_ZOOM': 9,
+    'MAX_ZOOM':18,
+    'ATTRIBUTION_PREFIX':'fire response system'
+    }
+
+
+# crispy 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

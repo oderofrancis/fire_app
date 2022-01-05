@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+<!-- load static -->
+
+{% load static %}
+
+<!-- crispy -->
+
+{% load crispy_forms_tags %}
+
+<!-- geoforms -->
+
+{{ form.media }}
+
+
+{% block title %}
+
+{% endblock %}
+
+	{% block content %}
+
+	<h1>Welcome report</h1>
+
+	<a href="{% url 'home' %}">HOME</a>
+
+	<form method="POST" action="{% url 'home' %}">
+
+		{% csrf_token %}
+
+	    <button type="submit" class="btn btn-success" value="submit">SAVE</button>
+
+		
+	</form>
+
+		{% block charts %}
+
+		{% endblock %}
+
+	{% endblock %}
