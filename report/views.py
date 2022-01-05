@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .forms import *
+from .models import *
 from django.contrib import messages
+from django.core.serializers import serialize
+import pandas as pd
 
 # Create your views here.
 
@@ -25,6 +28,26 @@ def report(request):
 			return redirect('/report/')
 
 
-	context={'form':form}
+	# for the values
+
+	cases = Incidence.objects.all().count()
+	values = Incidence.objects.all()
+	values = serialize('json',values)
+	values = pd.read_json(values)
+	values = values[values.columns[1]].sum()
+	# values =2
+
+
+	context={'form':form,'cases':cases,'values':values}
 
 	return render(request,'report/report.html',context)
+
+
+def loginPage(request):
+	return render(request,'analysis/login.html')
+
+def registerPage(request):
+	return render(request,'analysis/register.html')
+
+def dashboard(request):
+	return render(request,'analysis/dashboard.html')
